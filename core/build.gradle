@@ -2,7 +2,7 @@ apply plugin: 'kotlin-multiplatform'
 apply plugin: 'kotlinx-serialization'
 apply plugin: 'com.squareup.sqldelight'
 
-group = 'com.adrena.reaktive.core'
+group = 'com.jeffrey.reaktive.core'
 version = 1.0
 
 kotlin {
@@ -32,7 +32,7 @@ kotlin {
                 // HTTP
                 implementation "io.ktor:ktor-client-core:$ktor_version"
                 implementation "io.ktor:ktor-client-json:$ktor_version"
-                //implementation "io.ktor:ktor-client-logging:$ktor_version"
+                implementation "io.ktor:ktor-client-logging:$ktor_version"
                 implementation "io.ktor:ktor-client-serialization:$ktor_version"
 
                 // Reactive
