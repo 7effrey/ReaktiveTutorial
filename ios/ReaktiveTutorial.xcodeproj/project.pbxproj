@@ -7,12 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		003C4262255E1BC200B811D1 /* MovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003C4261255E1BC200B811D1 /* MovieViewController.swift */; };
+		003C4264255E2E0D00B811D1 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003C4263255E2E0D00B811D1 /* TestViewController.swift */; };
 		A71830692351E59200D50581 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71830682351E59200D50581 /* AppDelegate.swift */; };
 		A718306F2351E59300D50581 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A718306E2351E59300D50581 /* Assets.xcassets */; };
 		A71830752351E59300D50581 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A71830732351E59300D50581 /* LaunchScreen.storyboard */; };
 		A7BE4C792351E73500E1D799 /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7BE4C782351E73500E1D799 /* Core.framework */; };
 		A7BE4C7A2351E73500E1D799 /* Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A7BE4C782351E73500E1D799 /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		A7BE4C7E2351E9B100E1D799 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BE4C7D2351E9B100E1D799 /* ViewController.swift */; };
 		A7BE4C802351EB2C00E1D799 /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BE4C7F2351EB2C00E1D799 /* MovieCell.swift */; };
 		B2B6E9C81DC4856CE243E786 /* Pods_ReaktiveTutorial.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E38F3511F7C023E069C93475 /* Pods_ReaktiveTutorial.framework */; };
 /* End PBXBuildFile section */
@@ -32,6 +33,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		003C4261255E1BC200B811D1 /* MovieViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieViewController.swift; sourceTree = "<group>"; };
+		003C4263255E2E0D00B811D1 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		3F6996E6EF560CF18FADB1B4 /* Pods-ReaktiveTutorial.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReaktiveTutorial.release.xcconfig"; path = "Target Support Files/Pods-ReaktiveTutorial/Pods-ReaktiveTutorial.release.xcconfig"; sourceTree = "<group>"; };
 		56786C0E19B1CA7F176BAE7D /* Pods-ReaktiveTutorial.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReaktiveTutorial.debug.xcconfig"; path = "Target Support Files/Pods-ReaktiveTutorial/Pods-ReaktiveTutorial.debug.xcconfig"; sourceTree = "<group>"; };
 		A71830652351E59200D50581 /* ReaktiveTutorial.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReaktiveTutorial.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -40,7 +43,6 @@
 		A71830742351E59300D50581 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A71830762351E59300D50581 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A7BE4C782351E73500E1D799 /* Core.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Core.framework; path = "../core/build/xcode-frameworks/Core.framework"; sourceTree = "<group>"; };
-		A7BE4C7D2351E9B100E1D799 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		A7BE4C7F2351EB2C00E1D799 /* MovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
 		E38F3511F7C023E069C93475 /* Pods_ReaktiveTutorial.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReaktiveTutorial.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -89,11 +91,12 @@
 			isa = PBXGroup;
 			children = (
 				A71830682351E59200D50581 /* AppDelegate.swift */,
-				A7BE4C7D2351E9B100E1D799 /* ViewController.swift */,
 				A718306E2351E59300D50581 /* Assets.xcassets */,
 				A71830732351E59300D50581 /* LaunchScreen.storyboard */,
 				A71830762351E59300D50581 /* Info.plist */,
 				A7BE4C7F2351EB2C00E1D799 /* MovieCell.swift */,
+				003C4261255E1BC200B811D1 /* MovieViewController.swift */,
+				003C4263255E2E0D00B811D1 /* TestViewController.swift */,
 			);
 			path = ReaktiveTutorial;
 			sourceTree = "<group>";
@@ -139,7 +142,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 1100;
 				LastUpgradeCheck = 1100;
-				ORGANIZATIONNAME = "Adrena Teknologi Indonesia";
+				ORGANIZATIONNAME = "Jeffrey Hermanto Halimsetiawan";
 				TargetAttributes = {
 					A71830642351E59200D50581 = {
 						CreatedOnToolsVersion = 11.0;
@@ -192,7 +195,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cd \"$SRCROOT/../core/build/xcode-frameworks\" \n./gradlew :core:packForXCode -PXCODE_CONFIGURATION=${CONFIGURATION}\n";
+			shellScript = "#cd \"$SRCROOT/../core/build/xcode-frameworks\" \n#../gradlew :core:packForXCode -PXCODE_CONFIGURATION=${CONFIGURATION}\n\ncd \"$SRCROOT/..\"\n./gradlew :core:packForXCode -PXCODE_CONFIGURATION=${CONFIGURATION}\n";
 		};
 		AE21703C040CB66DECCB6397 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -240,9 +243,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A7BE4C7E2351E9B100E1D799 /* ViewController.swift in Sources */,
+				003C4264255E2E0D00B811D1 /* TestViewController.swift in Sources */,
 				A71830692351E59200D50581 /* AppDelegate.swift in Sources */,
 				A7BE4C802351EB2C00E1D799 /* MovieCell.swift in Sources */,
+				003C4262255E1BC200B811D1 /* MovieViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -380,7 +384,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = TZC29QSGCB;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = 2SNLM5L8FM;
 				ENABLE_PREVIEWS = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SRCROOT)/../core/build/xcode-frameworks",
@@ -391,7 +396,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.adrena.ios.mpp.ReaktiveTutorial;
+				MARKETING_VERSION = 1.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jeffrey.reaktive.tutorial;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -404,7 +410,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = TZC29QSGCB;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = 2SNLM5L8FM;
 				ENABLE_PREVIEWS = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SRCROOT)/../core/build/xcode-frameworks",
@@ -415,7 +422,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.adrena.ios.mpp.ReaktiveTutorial;
+				MARKETING_VERSION = 1.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jeffrey.reaktive.tutorial;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

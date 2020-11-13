@@ -17,9 +17,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         try! setupDatabase()
         
-        let controller = ViewController()
+//        let controller = TestViewController()
+        let controller = MovieViewController()
         
-        controller.title = "Hello World"
+        controller.title = "Kotlin Multi Platform"
         
         let navigationController = UINavigationController(rootViewController: controller)
         
