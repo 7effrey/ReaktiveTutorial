@@ -40,6 +40,25 @@ kotlin {
                 implementation "com.badoo.reaktive:coroutines-interop:$reactive_version-nmtc"
             }
         }
+        commonTest {
+            dependencies {
+                // Kotlin Test
+                implementation "org.jetbrains.kotlin:kotlin-test-common"
+                implementation "org.jetbrains.kotlin:kotlin-test-annotations-common"
+
+                implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
+
+                // Mock
+                implementation "io.mockk:mockk:$mockk_version"
+                implementation "io.mockk:mockk-common:$mockk_version"
+
+                // HTTP
+                implementation "io.ktor:ktor-client-mock:$ktor_version"
+
+                // Reactive
+                implementation "com.badoo.reaktive:reaktive-testing:$reactive_version"
+            }
+        }
 
         androidMain {
             dependencies {
@@ -47,6 +66,12 @@ kotlin {
 
                 // HTTP
                 implementation "io.ktor:ktor-client-android:$ktor_version"
+            }
+        }
+        androidTest {
+            dependencies {
+                implementation kotlin('test')
+                implementation kotlin('test-junit')
             }
         }
 
@@ -58,6 +83,9 @@ kotlin {
                 // HTTP
                 implementation "io.ktor:ktor-client-ios:$ktor_version"
             }
+        }
+        iOSTest {
+
         }
 
         all {
