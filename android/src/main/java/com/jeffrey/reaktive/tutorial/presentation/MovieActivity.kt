@@ -90,6 +90,8 @@ class MovieActivity : AppCompatActivity() {
             }
         })
 
+        binding()
+
         mRefreshLayout.setOnRefreshListener {
             get()
         }
@@ -98,8 +100,6 @@ class MovieActivity : AppCompatActivity() {
             Toast.makeText(this, "Press Next", Toast.LENGTH_SHORT).show()
             pressNext()
         }
-
-        binding()
 
         get()
     }
