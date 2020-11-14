@@ -1,0 +1,43 @@
+apply plugin: 'jacoco'
+
+jacoco {
+    toolVersion = "0.8.2"
+}
+
+project.afterEvaluate {
+
+    def testTaskName = "androidTest"
+
+    task "generateCodeCoverage" (type:JacocoReport, dependsOn: [testTaskName]) {
+        group = "Reporting"
+        description = "Generate Jacoco coverage reports on the common module build."
+
+        def excludes = [
+                '**/com/adrena/**',
+                '**/core/data/network/**',
+                '**/core/data/entity/**',
+                '**/core/util/reaktive/**',
+                '**/InjectMocks**',
+                '**/*Test*.*',
+                '**/*Function*.*'
+        ]
+
+        classDirectories.from = fileTree(
+                dir: "${project.buildDir}/classes/kotlin/android/",
+                excludes: excludes
+        )
+
+        def coverageSourceDirs = [
+                "src/commonMain/kotlin"
+        ]
+
+        additionalSourceDirs.from = files(coverageSourceDirs)
+        sourceDirectories.from = files(coverageSourceDirs)
+        executionData.from = files("${project.buildDir}/jacoco/${testTaskName}.exec")
+
+        reports {
+            xml.enabled = true
+            html.enabled = true
+        }
+    }
+}

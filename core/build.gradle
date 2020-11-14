@@ -1,6 +1,7 @@
 apply plugin: 'kotlin-multiplatform'
 apply plugin: 'kotlinx-serialization'
 apply plugin: 'com.squareup.sqldelight'
+apply from: './jacoco.gradle'
 
 group = 'com.jeffrey.reaktive.core'
 version = 1.0
