@@ -52,7 +52,7 @@ class MovieViewController: UIViewController {
     private lazy var _viewModel: MovieViewModel = {
         let delegate = UIApplication.shared.delegate as! AppDelegate
 
-        let httpClient: HttpClient = KtorHttpClient(baseUrl: "https://www.omdbapi.com/")
+        let httpClient: HttpClient = KtorHttpClient(baseUrl: "https://www.omdbapi.com/", logging: true)
         let provider: OmdbProvider = DefaultOmdbProvider(httpClient: httpClient, apiKey: "b445ca0b")
         let repository: MovieRepository = DefaultMovieRepository(omdbProvider: provider)
 

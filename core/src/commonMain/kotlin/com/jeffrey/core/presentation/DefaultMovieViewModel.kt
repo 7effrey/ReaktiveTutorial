@@ -15,9 +15,7 @@ import com.badoo.reaktive.subject.replay.ReplaySubject
 
 class DefaultMovieViewModel<O>(
     private val movieRepository: MovieRepository,
-    private val mapper: Mapper<List<Movie>, List<O>>?,
-    private val schedulerUi: Scheduler = mainScheduler,
-    private val schedulerIo: Scheduler = ioScheduler
+    private val mapper: Mapper<List<Movie>, List<O>>?
 ) : MovieViewModel<O> {
 
     override val output: ObservableWrapper<MovieViewModel.Output>
@@ -32,6 +30,9 @@ class DefaultMovieViewModel<O>(
 
     private val vdLoading: BehaviorSubject<Boolean> = BehaviorSubject(false)
     private val vdResult: BehaviorSubject<List<O>> = BehaviorSubject(listOf())
+
+    private var schedulerUi: Scheduler = mainScheduler
+    private var schedulerIo: Scheduler = ioScheduler
 
     private var prevRequest = ""
     private var pageSubject = BehaviorSubject(1)
@@ -89,5 +90,19 @@ class DefaultMovieViewModel<O>(
                 get() = vdResult.wrap()
 
         }
+    }
+
+    /**
+     * For Unit Testing purpose, it doesn't work on iOS when it's set as optional variable in constructor
+     */
+    fun setSchedulerUi(scheduler: Scheduler) {
+        this.schedulerUi = scheduler
+    }
+
+    /**
+     * For Unit Testing purpose, it doesn't work on iOS when it's set as optional variable in constructor
+     */
+    fun setSchedulerIo(scheduler: Scheduler) {
+        this.schedulerIo = scheduler
     }
 }

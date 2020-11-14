@@ -22,7 +22,7 @@ import kotlin.test.assertTrue
 
 class DefaultMovieViewModelTest {
 
-    lateinit var viewModel: MovieViewModel<Movie>
+    lateinit var viewModel: DefaultMovieViewModel<Movie>
 
     @MockK
     lateinit var repository: MovieRepository
@@ -54,7 +54,9 @@ class DefaultMovieViewModelTest {
 
         disposable = CompositeDisposable()
 
-        viewModel = DefaultMovieViewModel(repository, null, testScheduler, testScheduler)
+        viewModel = DefaultMovieViewModel(repository, null)
+        viewModel.setSchedulerIo(testScheduler)
+        viewModel.setSchedulerUi(testScheduler)
 
         disposable?.add(viewModel.set(object: MovieViewModel.ViewEvent {
             override val get: Observable<String> = veGet

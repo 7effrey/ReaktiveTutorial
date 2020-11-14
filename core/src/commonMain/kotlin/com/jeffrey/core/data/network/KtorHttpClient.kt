@@ -15,8 +15,10 @@ import kotlinx.serialization.DeserializationStrategy
 
 class KtorHttpClient(
     private val baseUrl: String,
-    logging: Boolean = true,
-    private val client: io.ktor.client.HttpClient = HttpClient {
+    logging: Boolean = true
+) : HttpClient {
+
+    private var client: io.ktor.client.HttpClient = HttpClient {
         install(JsonFeature) {
             serializer = KotlinxSerializer()
         }
@@ -33,7 +35,14 @@ class KtorHttpClient(
             }
         }
     }
-) : HttpClient {
+
+    /**
+     * Set Ktor Client for Unit Testing purpose only
+     */
+    fun setClient(client: io.ktor.client.HttpClient) {
+        this.client = client
+    }
+
 
     private fun HttpRequestBuilder.apiUrl(path: String? = null) {
         header(HttpHeaders.CacheControl, "no-cache")

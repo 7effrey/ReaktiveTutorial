@@ -17,7 +17,7 @@ class KtorHttpClientTest {
 
     private lateinit var httpClient: io.ktor.client.HttpClient
 
-    private lateinit var ktorHttpClient: HttpClient
+    private lateinit var ktorHttpClient: KtorHttpClient
 
     private var defaultBaseUrl = "https://www.omdbapi.com/"
 
@@ -63,7 +63,8 @@ class KtorHttpClientTest {
                 }
             }
         }
-        ktorHttpClient = KtorHttpClient(defaultBaseUrl, true, httpClient)
+        ktorHttpClient = KtorHttpClient(defaultBaseUrl)
+        ktorHttpClient.setClient(httpClient)
     }
 
     @Test
