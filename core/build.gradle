@@ -39,6 +39,10 @@ kotlin {
                 // Reactive
                 implementation "com.badoo.reaktive:reaktive:$reactive_version"
                 implementation "com.badoo.reaktive:coroutines-interop:$reactive_version-nmtc"
+
+                // SharedPreferences
+                implementation "com.russhwolf:multiplatform-settings:$multiplatform_settings_version"
+                implementation "com.russhwolf:multiplatform-settings-no-arg:$multiplatform_settings_version"
             }
         }
         commonTest {
@@ -58,6 +62,9 @@ kotlin {
 
                 // Reactive
                 implementation "com.badoo.reaktive:reaktive-testing:$reactive_version"
+
+                // SharedPreferences
+                implementation "com.russhwolf:multiplatform-settings-test:$multiplatform_settings_version"
             }
         }
 

@@ -9,6 +9,7 @@ buildscript {
         kotlin_version = '1.4.10'
         sqldelight_version = '1.4.3'
         mockk_version = '1.9.2' // Version 1.10.x has issue with Android Studio 4.1
+        multiplatform_settings_version = '0.6.3'
     }
 
     repositories {
@@ -32,6 +33,7 @@ allprojects {
         google()
         jcenter()
         maven { url "https://dl.bintray.com/badoo/maven" }
+        mavenCentral()
     }
 }
 
