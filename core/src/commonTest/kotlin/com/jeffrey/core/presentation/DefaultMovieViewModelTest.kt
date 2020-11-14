@@ -13,7 +13,7 @@ import com.badoo.reaktive.test.observable.assertValues
 import com.badoo.reaktive.test.observable.test
 import com.jeffrey.core.data.entity.Movie
 import com.jeffrey.core.data.repository.MovieRepository
-import io.mockk.coEvery
+import io.mockk.every
 import io.mockk.impl.annotations.MockK
 import io.mockk.mockk
 import io.mockk.verify
@@ -51,7 +51,7 @@ class DefaultMovieViewModelTest {
             list.add(movie)
         }
         listMovies1 = list
-        coEvery{ repository.search(defaultQuery, 1) } answers  { observableOf(listMovies1) }
+        every { repository.search(defaultQuery, 1) } returns observableOf(listMovies1)
 
         val list2 = mutableListOf<Movie>()
         for (x in 1..5) {
@@ -59,7 +59,7 @@ class DefaultMovieViewModelTest {
             list2.add(movie)
         }
         listMovies2 = list2
-        coEvery{ repository.search(defaultQuery, 2) } answers  { observableOf(listMovies2) }
+        every { repository.search(defaultQuery, 2) } returns observableOf(listMovies2)
 
         disposable = CompositeDisposable()
 

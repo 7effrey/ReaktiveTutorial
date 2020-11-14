@@ -15,9 +15,8 @@ import kotlinx.serialization.DeserializationStrategy
 
 class KtorHttpClient(
     private val baseUrl: String,
-) : HttpClient {
-
-    private val client = HttpClient {
+    logging: Boolean = true,
+    private val client: io.ktor.client.HttpClient = HttpClient {
         install(JsonFeature) {
             serializer = KotlinxSerializer()
         }
@@ -27,11 +26,14 @@ class KtorHttpClient(
          * coroutines pattern usage and AwaitAll bug,
          * Activating logging will cause crash on K/N awaitAll
          */
-        install(Logging) {
-            logger = Logger.SIMPLE
-            level = LogLevel.ALL
+        if (logging) {
+            install(Logging) {
+                logger = Logger.SIMPLE
+                level = LogLevel.ALL
+            }
         }
     }
+) : HttpClient {
 
     private fun HttpRequestBuilder.apiUrl(path: String? = null) {
         header(HttpHeaders.CacheControl, "no-cache")
