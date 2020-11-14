@@ -7,6 +7,7 @@ import com.jeffrey.core.util.reaktive.PublishSubjectWrapper
 import com.badoo.reaktive.disposable.CompositeDisposable
 import com.badoo.reaktive.disposable.Disposable
 import com.badoo.reaktive.observable.*
+import com.badoo.reaktive.scheduler.Scheduler
 import com.badoo.reaktive.scheduler.ioScheduler
 import com.badoo.reaktive.scheduler.mainScheduler
 import com.badoo.reaktive.subject.behavior.BehaviorSubject
@@ -14,7 +15,9 @@ import com.badoo.reaktive.subject.replay.ReplaySubject
 
 class DefaultMovieViewModel<O>(
     private val movieRepository: MovieRepository,
-    private val mapper: Mapper<List<Movie>, List<O>>?
+    private val mapper: Mapper<List<Movie>, List<O>>?,
+    private val schedulerUi: Scheduler = mainScheduler,
+    private val schedulerIo: Scheduler = ioScheduler
 ) : MovieViewModel<O> {
 
     override val output: ObservableWrapper<MovieViewModel.Output>
@@ -43,15 +46,15 @@ class DefaultMovieViewModel<O>(
             },
             viewEvent.loadMore,
         )
-            .debounce(200, mainScheduler)
+            .debounce(200, schedulerUi)
             .filter { !vdLoading.value }
             .flatMap { query ->
                 vdLoading.onNext(true)
                 return@flatMap movieRepository.search(query, pageSubject.value)
                     .onErrorReturnValue(listOf())
             }
-            .subscribeOn(ioScheduler)
-            .observeOn(mainScheduler)
+            .subscribeOn(schedulerIo)
+            .observeOn(schedulerUi)
             .doOnAfterNext {
                 vdLoading.onNext(false)
             }
