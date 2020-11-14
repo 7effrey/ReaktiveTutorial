@@ -23,9 +23,10 @@ import com.jeffrey.reaktive.tutorial.R
 import com.jeffrey.reaktive.tutorial.presentation.model.MovieModel
 import com.badoo.reaktive.disposable.CompositeDisposable
 import com.badoo.reaktive.observable.Observable
-import com.badoo.reaktive.scheduler.mainScheduler
 import com.badoo.reaktive.subject.publish.PublishSubject
 import com.facebook.stetho.Stetho
+import com.jeffrey.core.data.storage.DefaultStorageService
+import com.jeffrey.core.data.storage.StorageService
 import com.squareup.sqldelight.android.AndroidSqliteDriver
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -52,9 +53,10 @@ class MovieActivity : AppCompatActivity() {
     private val mViewModel: MovieViewModel<MovieModel> by lazy {
         val httpClient: HttpClient = KtorHttpClient("https://www.omdbapi.com/")
 
-        val service: OmdbProvider = DefaultOmdbProvider(httpClient, "b445ca0b")
+        val provider: OmdbProvider = DefaultOmdbProvider(httpClient, "b445ca0b")
+        val storageService: StorageService = DefaultStorageService()
 
-        val repository: MovieRepository = DefaultMovieRepository(service)
+        val repository: MovieRepository = DefaultMovieRepository(provider, storageService)
 
         val modelMapper = MovieModelsMapper()
 
@@ -133,6 +135,10 @@ class MovieActivity : AppCompatActivity() {
         disposables?.add(
             viewData.result.subscribe(true, onNext = ::result)
         )
+        disposables?.add(viewData.counter
+            .subscribe(true) {
+                Toast.makeText(this, "Number of Search: $it", Toast.LENGTH_SHORT).show()
+            })
         disposables?.add(mViewModel.output
             .subscribe(true) {
                 if (it is MovieViewModel.Output.NavigateToDetail)

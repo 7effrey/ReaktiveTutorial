@@ -54,7 +54,8 @@ class TestViewController: UIViewController {
         
         let httpClient: HttpClient = KtorHttpClient(baseUrl: "https://www.omdbapi.com/", logging: true)
         let provider: OmdbProvider = DefaultOmdbProvider(httpClient: httpClient, apiKey: "b445ca0b")
-        let repository: MovieRepository = DefaultMovieRepository(omdbProvider: provider)
+        let storageService: StorageService = DefaultStorageService()
+        let repository: MovieRepository = DefaultMovieRepository(omdbProvider: provider, storageService: storageService)
 
         let viewModel = DefaultTestViewModel<Movie>(movieRepository: repository, mapper: nil)
         

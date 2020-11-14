@@ -30,6 +30,7 @@ class DefaultMovieViewModel<O>(
 
     private val vdLoading: BehaviorSubject<Boolean> = BehaviorSubject(false)
     private val vdResult: BehaviorSubject<List<O>> = BehaviorSubject(listOf())
+    private val vdCounter: BehaviorSubject<Int> = BehaviorSubject(0)
 
     private var schedulerUi: Scheduler = mainScheduler
     private var schedulerIo: Scheduler = ioScheduler
@@ -73,6 +74,12 @@ class DefaultMovieViewModel<O>(
                 newItems.addAll(list)
 
                 vdResult.onNext(newItems)
+
+                // Update number of searches
+                disposable.add(movieRepository.getNumberOfSearches()
+                    .subscribe { counter ->
+                        vdCounter.onNext(counter)
+                    })
             })
 
         disposable.add(viewEvent.pressNext.subscribe {
@@ -84,11 +91,9 @@ class DefaultMovieViewModel<O>(
 
     override fun generateViewData(): MovieViewModel.ViewData<O> {
         return object: MovieViewModel.ViewData<O> {
-            override val loading: ObservableWrapper<Boolean>
-                get() = vdLoading.wrap()
-            override val result: ObservableWrapper<List<O>>
-                get() = vdResult.wrap()
-
+            override val loading: ObservableWrapper<Boolean> = vdLoading.wrap()
+            override val result: ObservableWrapper<List<O>> = vdResult.wrap()
+            override val counter: ObservableWrapper<Int> = merge(vdCounter.skip(1), movieRepository.getNumberOfSearches()).wrap()
         }
     }
 

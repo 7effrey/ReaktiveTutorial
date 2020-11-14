@@ -27,6 +27,8 @@ import com.jeffrey.core.data.provider.DefaultOmdbProvider
 import com.jeffrey.core.data.provider.OmdbProvider
 import com.jeffrey.core.data.repository.DefaultMovieRepository
 import com.jeffrey.core.data.repository.MovieRepository
+import com.jeffrey.core.data.storage.DefaultStorageService
+import com.jeffrey.core.data.storage.StorageService
 import com.squareup.sqldelight.android.AndroidSqliteDriver
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -55,9 +57,10 @@ class TestActivity : AppCompatActivity() {
 
         val httpClient: HttpClient = KtorHttpClient("https://www.omdbapi.com/")
 
-        val service: OmdbProvider = DefaultOmdbProvider(httpClient, "b445ca0b")
+        val provider: OmdbProvider = DefaultOmdbProvider(httpClient, "b445ca0b")
+        val storageService: StorageService = DefaultStorageService()
 
-        val repository: MovieRepository = DefaultMovieRepository(service)
+        val repository: MovieRepository = DefaultMovieRepository(provider, storageService)
 
         val modelMapper = MovieModelsMapper()
 

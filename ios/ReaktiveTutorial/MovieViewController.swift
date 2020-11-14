@@ -54,7 +54,8 @@ class MovieViewController: UIViewController {
 
         let httpClient: HttpClient = KtorHttpClient(baseUrl: "https://www.omdbapi.com/", logging: true)
         let provider: OmdbProvider = DefaultOmdbProvider(httpClient: httpClient, apiKey: "b445ca0b")
-        let repository: MovieRepository = DefaultMovieRepository(omdbProvider: provider)
+        let storageService: StorageService = DefaultStorageService()
+        let repository: MovieRepository = DefaultMovieRepository(omdbProvider: provider, storageService: storageService)
 
         let viewModel = DefaultMovieViewModel<Movie>(movieRepository: repository, mapper: nil)
 
@@ -165,6 +166,14 @@ class MovieViewController: UIViewController {
             strongSelf.collectionView.reloadData()
         })
 
+        disposables?.add(disposable: viewData.counter.subscribe(isThreadLocal: true) { [weak self] result in
+            guard let strongSelf = self, let counter = result as? Int else { return }
+            
+            let alert = UIAlertController(title: "Number of Search", message: "Counter: \(counter)", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+            strongSelf.present(alert, animated: true, completion: nil)
+        })
+        
         disposables?.add(disposable: _viewModel.output.subscribe(isThreadLocal: true) { [weak self] result in
             guard let strongSelf = self else { return }
 

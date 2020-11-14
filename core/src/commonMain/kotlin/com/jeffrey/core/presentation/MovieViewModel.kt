@@ -21,6 +21,7 @@ interface MovieViewModel<O> {
     interface ViewData<O> {
         val loading: ObservableWrapper<Boolean>
         val result: ObservableWrapper<List<O>>
+        val counter: ObservableWrapper<Int>
     }
 
     sealed class Output {
