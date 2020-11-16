@@ -7,6 +7,7 @@ import com.badoo.reaktive.test.observable.test
 import com.jeffrey.core.data.entity.MovieResponse
 import com.jeffrey.core.data.entity.MoviesResponse
 import com.jeffrey.core.data.provider.OmdbProvider
+import com.jeffrey.core.data.storage.StorageService
 import io.mockk.every
 import io.mockk.impl.annotations.MockK
 import io.mockk.mockk
@@ -20,12 +21,17 @@ class DefaultMovieRepositoryTest {
     lateinit var repository: MovieRepository
 
     @MockK
+    lateinit var storageService: StorageService
+
+    @MockK
     lateinit var omdbProvider: OmdbProvider
 
     private var defaultQuery = "test"
 
     private lateinit var movieResponse1: MoviesResponse
     private lateinit var movieResponse2: MoviesResponse
+
+    private var defaultNumOfSearch = 1
 
     @BeforeTest
     fun setup() {
@@ -36,7 +42,10 @@ class DefaultMovieRepositoryTest {
         movieResponse2 = createMockMoviesResponse(false)
         every { omdbProvider.searchMovie(defaultQuery, 2) } returns observableOf(movieResponse2)
 
-        repository = DefaultMovieRepository(omdbProvider)
+        every { storageService.getInt(MovieRepository.KEY_NUM_OF_SEARCH) } returns observableOf(defaultNumOfSearch)
+        every { storageService.setInt(MovieRepository.KEY_NUM_OF_SEARCH, any()) } returns observableOf(Unit)
+
+        repository = DefaultMovieRepository(omdbProvider, storageService)
     }
 
     @Test

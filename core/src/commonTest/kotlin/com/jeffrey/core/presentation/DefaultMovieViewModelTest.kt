@@ -40,6 +40,8 @@ class DefaultMovieViewModelTest {
 
     private var defaultQuery = "test"
 
+    private var defaultNumberOfSearch = 1
+
     private var testScheduler: TestScheduler = TestScheduler()
 
     @BeforeTest
@@ -51,6 +53,8 @@ class DefaultMovieViewModelTest {
 
         listMovies2 = createMockListOfMovies(5)
         every { repository.search(defaultQuery, 2) } returns observableOf(listMovies2)
+
+        every { repository.getNumberOfSearches() } returns observableOf(defaultNumberOfSearch)
 
         disposable = CompositeDisposable()
 
